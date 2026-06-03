@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ClaudeLogo from "@/components/ClaudeLogo";
+import BrandLogo from "@/components/BrandLogo";
 import { meta } from "@/lib/content";
 
 // Home: the Claude mark, front and center, on warm near-black — with a quiet
@@ -18,9 +18,10 @@ export default function Home() {
       />
 
       <div className="relative flex flex-col items-center animate-fade-up">
-        <ClaudeLogo
+        <BrandLogo
           spin
-          className="h-36 w-36 text-claude drop-shadow-[0_0_45px_rgba(217,119,87,0.35)] sm:h-48 sm:w-48"
+          priority
+          className="h-36 w-36 drop-shadow-[0_0_45px_rgba(217,119,87,0.35)] sm:h-48 sm:w-48"
         />
 
         <h1 className="mt-10 text-4xl font-semibold tracking-tight text-cream sm:text-6xl">

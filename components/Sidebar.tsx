@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import ClaudeLogo from "./ClaudeLogo";
+import BrandLogo from "./BrandLogo";
 import { navItems } from "@/lib/content";
 
 export default function Sidebar() {
@@ -46,7 +46,7 @@ export default function Sidebar() {
       {/* Mobile top bar */}
       <header className="sticky top-0 z-30 flex items-center justify-between border-b border-border bg-background/90 px-4 py-3 backdrop-blur md:hidden">
         <Link href="/" className="flex items-center gap-2">
-          <ClaudeLogo className="h-6 w-6 text-claude" />
+          <BrandLogo className="h-6 w-6" />
           <span className="text-sm font-semibold text-cream">Claude · Foundations</span>
         </Link>
         <button
@@ -75,7 +75,7 @@ export default function Sidebar() {
               onClick={() => setOpen(false)}
               className="mb-6 flex items-center gap-2"
             >
-              <ClaudeLogo className="h-7 w-7 text-claude" />
+              <BrandLogo className="h-7 w-7" />
               <span className="text-sm font-semibold text-cream">
                 Claude · Foundations
               </span>
@@ -88,7 +88,7 @@ export default function Sidebar() {
       {/* Desktop sidebar */}
       <aside className="sticky top-0 hidden h-screen w-72 shrink-0 flex-col border-r border-border bg-surface/40 p-5 md:flex">
         <Link href="/" className="mb-8 flex items-center gap-3">
-          <ClaudeLogo className="h-8 w-8 text-claude" />
+          <BrandLogo className="h-8 w-8" />
           <span>
             <span className="block text-sm font-semibold leading-tight text-cream">
               Claude Certified Architect
