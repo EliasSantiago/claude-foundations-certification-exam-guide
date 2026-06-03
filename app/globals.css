@@ -1,20 +1,38 @@
 @import "tailwindcss";
 
 /*
-  Claude Certified Architect – Foundations study guide
-  Palette: warm almost-black + Claude coral, on a soft cream paper tone.
+  Claude Certified Architect – Foundations study guide.
+  Two themes share one set of semantic CSS variables; only the values change.
+  Light is the default (:root); dark is applied via the `.dark` class on <html>.
+  Accent coral stays the brand color across both themes.
 */
+
 :root {
-  --background: #19181a;
-  --surface: #211f22;
-  --surface-2: #2a282b;
-  --border: #393539;
-  --foreground: #ece9e1;
-  --muted: #a39e94;
+  --background: #faf9f5; /* content area */
+  --surface: #ffffff; /* cards */
+  --surface-2: #f1efe9; /* chips, inputs */
+  --border: #e5e2d8;
+  --foreground: #34322d; /* body text */
+  --muted: #726c5f;
+  --claude: #b85a37; /* brand coral (fills, bars, active) */
+  --claude-soft: #a64f30; /* accent text */
+  --claude-dim: #d7a791; /* soft borders, bullets */
+  --cream: #211f1b; /* strong heading text (inverts per theme) */
+  --on-claude: #ffffff; /* text on coral fills */
+}
+
+.dark {
+  --background: #1c1c1e; /* solid dark gray, no gradient */
+  --surface: #242426;
+  --surface-2: #2c2c2f;
+  --border: #3a3a3d;
+  --foreground: #e7e5df;
+  --muted: #a3a09a;
   --claude: #d97757;
   --claude-soft: #e08e6f;
   --claude-dim: #8a4a32;
-  --cream: #f0eee6;
+  --cream: #f1efe9;
+  --on-claude: #1a120e;
 }
 
 @theme inline {
@@ -28,8 +46,10 @@
   --color-claude-soft: var(--claude-soft);
   --color-claude-dim: var(--claude-dim);
   --color-cream: var(--cream);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-on-claude: var(--on-claude);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains);
 }
 
 * {
@@ -43,8 +63,18 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Titles & subtitles use the display font. */
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
 }
 
 /* Thin, themed scrollbar */
@@ -88,7 +118,7 @@ body {
 }
 .prose-guide code,
 .inline-code {
-  font-family: var(--font-mono), monospace;
+  font-family: var(--font-jetbrains), monospace;
   background: var(--surface-2);
   color: var(--claude-soft);
   padding: 0.1rem 0.4rem;

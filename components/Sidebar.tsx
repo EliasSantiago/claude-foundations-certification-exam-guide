@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import BrandLogo from "./BrandLogo";
+import ThemeToggle from "./ThemeToggle";
 import { navItems } from "@/lib/content";
 
 export default function Sidebar() {
@@ -49,17 +50,20 @@ export default function Sidebar() {
           <BrandLogo className="h-6 w-6" />
           <span className="text-sm font-semibold text-cream">Claude · Foundations</span>
         </Link>
-        <button
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle navigation"
-          className="rounded-md border border-border p-2 text-muted hover:text-cream"
-        >
-          <div className="space-y-1.5">
-            <span className="block h-0.5 w-5 bg-current" />
-            <span className="block h-0.5 w-5 bg-current" />
-            <span className="block h-0.5 w-5 bg-current" />
-          </div>
-        </button>
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle navigation"
+            className="rounded-md border border-border p-2 text-muted hover:text-cream"
+          >
+            <div className="space-y-1.5">
+              <span className="block h-0.5 w-5 bg-current" />
+              <span className="block h-0.5 w-5 bg-current" />
+              <span className="block h-0.5 w-5 bg-current" />
+            </div>
+          </button>
+        </div>
       </header>
 
       {/* Mobile drawer */}
@@ -97,8 +101,9 @@ export default function Sidebar() {
           </span>
         </Link>
         {links}
-        <div className="mt-auto pt-6 text-xs text-muted/60">
-          Unofficial companion · v0.1
+        <div className="mt-auto flex items-center justify-between gap-3 pt-6">
+          <span className="text-xs text-muted/60">Unofficial companion · v0.1</span>
+          <ThemeToggle />
         </div>
       </aside>
     </>

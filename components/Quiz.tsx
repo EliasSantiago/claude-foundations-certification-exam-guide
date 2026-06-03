@@ -141,9 +141,9 @@ export default function Quiz() {
                       <span
                         className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-xs font-semibold ${
                           isRevealed && isAnswer
-                            ? "border-claude bg-claude text-[#1a120e]"
+                            ? "border-claude bg-claude text-on-claude"
                             : isRevealed && selected
-                              ? "border-red-500 text-red-400"
+                              ? "border-red-500 text-red-500"
                               : selected
                                 ? "border-claude text-claude"
                                 : "border-border text-muted"
@@ -151,9 +151,7 @@ export default function Quiz() {
                       >
                         {opt.key}
                       </span>
-                      <span className="text-muted-foreground text-cream/90">
-                        {opt.text}
-                      </span>
+                      <span className="text-cream/90">{opt.text}</span>
                     </button>
                   );
                 })}
@@ -164,14 +162,14 @@ export default function Quiz() {
                   <button
                     onClick={() => reveal(q.id)}
                     disabled={!picked}
-                    className="rounded-lg bg-claude px-4 py-2 text-sm font-medium text-[#1a120e] transition enabled:hover:bg-claude-soft disabled:cursor-not-allowed disabled:opacity-40"
+                    className="rounded-lg bg-claude px-4 py-2 text-sm font-medium text-on-claude transition enabled:hover:bg-claude-soft disabled:cursor-not-allowed disabled:opacity-40"
                   >
                     Check answer
                   </button>
                 ) : (
                   <span
                     className={`text-sm font-semibold ${
-                      isCorrect ? "text-claude" : "text-red-400"
+                      isCorrect ? "text-claude" : "text-red-500"
                     }`}
                   >
                     {isCorrect

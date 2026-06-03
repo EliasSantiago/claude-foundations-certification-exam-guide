@@ -33,7 +33,7 @@ export default function Home() {
 
         <Link
           href="/overview"
-          className="group mt-12 inline-flex items-center gap-2 rounded-full bg-claude px-7 py-3 text-sm font-medium text-[#1a120e] transition hover:bg-claude-soft"
+          className="group mt-12 inline-flex items-center gap-2 rounded-full bg-claude px-7 py-3 text-sm font-medium text-on-claude transition hover:bg-claude-soft"
         >
           Enter the guide
           <span className="transition-transform group-hover:translate-x-1">→</span>
