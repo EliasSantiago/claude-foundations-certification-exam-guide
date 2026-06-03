@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+/*
+  Claude Certified Architect – Foundations study guide
+  Palette: warm almost-black + Claude coral, on a soft cream paper tone.
+*/
+:root {
+  --background: #19181a;
+  --surface: #211f22;
+  --surface-2: #2a282b;
+  --border: #393539;
+  --foreground: #ece9e1;
+  --muted: #a39e94;
+  --claude: #d97757;
+  --claude-soft: #e08e6f;
+  --claude-dim: #8a4a32;
+  --cream: #f0eee6;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-claude: var(--claude);
+  --color-claude-soft: var(--claude-soft);
+  --color-claude-dim: var(--claude-dim);
+  --color-cream: var(--cream);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Thin, themed scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--claude-dim);
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fade-up 0.5s ease both;
+}
+
+.prose-guide p {
+  color: var(--foreground);
+  line-height: 1.7;
+}
+.prose-guide code,
+.inline-code {
+  font-family: var(--font-mono), monospace;
+  background: var(--surface-2);
+  color: var(--claude-soft);
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.35rem;
+  font-size: 0.85em;
+}
