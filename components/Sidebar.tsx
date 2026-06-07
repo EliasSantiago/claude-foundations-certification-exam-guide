@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import BrandLogo from "./BrandLogo";
 import ThemeToggle from "./ThemeToggle";
+import UserMenu from "./UserMenu";
+import { OverallProgressMeter } from "./progress-ui";
 import { navItems } from "@/lib/content";
 
 export default function Sidebar() {
@@ -85,6 +87,12 @@ export default function Sidebar() {
               </span>
             </Link>
             {links}
+            <div className="mt-6 space-y-4 border-t border-border pt-6">
+              <OverallProgressMeter />
+              <div onClick={() => setOpen(false)}>
+                <UserMenu />
+              </div>
+            </div>
           </div>
         </div>
       )}
@@ -101,9 +109,15 @@ export default function Sidebar() {
           </span>
         </Link>
         {links}
-        <div className="mt-auto flex items-center justify-between gap-3 pt-6">
-          <span className="text-xs text-muted/60">Unofficial companion · v0.1</span>
-          <ThemeToggle />
+        <div className="mt-auto space-y-4 pt-6">
+          <OverallProgressMeter />
+          <div className="flex items-center justify-between gap-3">
+            <UserMenu />
+            <ThemeToggle />
+          </div>
+          <span className="block text-xs text-muted/60">
+            Unofficial companion · v0.1
+          </span>
         </div>
       </aside>
     </>

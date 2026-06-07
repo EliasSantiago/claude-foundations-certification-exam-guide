@@ -1,5 +1,11 @@
 import { PageHeader, PageNav } from "@/components/PageShell";
+import {
+  LoginToTrackHint,
+  SectionProgress,
+  StudyCheck,
+} from "@/components/progress-ui";
 import { exercises } from "@/lib/content";
+import { allExerciseKeys, exerciseKey } from "@/lib/progress";
 
 export const metadata = { title: "Exercises · Foundations Guide" };
 
@@ -11,6 +17,9 @@ export default function ExercisesPage() {
         title="Preparation exercises"
         intro="Four labs that build practical familiarity across the domains. Work through them with the Agent SDK, Claude Code, and the Claude API to turn knowledge into judgment."
       />
+
+      <LoginToTrackHint />
+      <SectionProgress keys={allExerciseKeys} noun="exercícios" />
 
       <div className="space-y-6">
         {exercises.map((ex) => (
@@ -38,7 +47,7 @@ export default function ExercisesPage() {
               ))}
             </ol>
 
-            <div className="mt-5 flex flex-wrap gap-2 border-t border-border pt-4">
+            <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-border pt-4">
               <span className="text-xs text-muted">Reinforces:</span>
               {ex.domains.map((d) => (
                 <span
@@ -48,6 +57,13 @@ export default function ExercisesPage() {
                   {d}
                 </span>
               ))}
+            </div>
+
+            <div className="mt-4">
+              <StudyCheck
+                itemKey={exerciseKey(ex.id)}
+                label="Marcar exercício como concluído"
+              />
             </div>
           </article>
         ))}

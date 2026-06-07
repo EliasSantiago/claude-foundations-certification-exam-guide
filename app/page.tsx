@@ -38,6 +38,22 @@ export default function Home() {
           Enter the guide
           <span className="transition-transform group-hover:translate-x-1">→</span>
         </Link>
+
+        <div className="mt-6 flex items-center gap-2 text-sm text-muted">
+          <Link
+            href="/login"
+            className="font-medium text-cream transition hover:text-claude-soft"
+          >
+            Entrar
+          </Link>
+          <span className="text-border">·</span>
+          <Link
+            href="/register"
+            className="font-medium text-cream transition hover:text-claude-soft"
+          >
+            Criar conta
+          </Link>
+        </div>
       </div>
 
       <p className="absolute bottom-6 text-xs text-muted/70">

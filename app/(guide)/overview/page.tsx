@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { PageHeader, PageNav } from "@/components/PageShell";
+import { ProgressDashboard } from "@/components/progress-ui";
 import { meta, intro, domains } from "@/lib/content";
 
 export const metadata = { title: "Overview · Foundations Guide" };
@@ -12,6 +13,11 @@ export default function OverviewPage() {
         title="Overview"
         intro="What the Claude Certified Architect – Foundations exam covers, who it's for, and how it's scored."
       />
+
+      {/* Personal progress / sign-up CTA */}
+      <div className="mb-10">
+        <ProgressDashboard />
+      </div>
 
       {/* Quick stat cards */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">

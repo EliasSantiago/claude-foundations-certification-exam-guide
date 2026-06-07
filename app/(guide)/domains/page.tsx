@@ -1,6 +1,8 @@
 import { PageHeader, PageNav } from "@/components/PageShell";
 import DomainSection from "@/components/DomainSection";
+import { LoginToTrackHint, SectionProgress } from "@/components/progress-ui";
 import { domains } from "@/lib/content";
+import { allTaskKeys } from "@/lib/progress";
 
 export const metadata = { title: "Domains · Foundations Guide" };
 
@@ -12,6 +14,9 @@ export default function DomainsPage() {
         title="Domains & task statements"
         intro="The five scored domains and their task statements. Expand any task to see the knowledge and skills it tests. Jump to a domain below."
       />
+
+      <LoginToTrackHint />
+      <SectionProgress keys={allTaskKeys} noun="tópicos" />
 
       {/* Jump links */}
       <div className="mb-12 flex flex-wrap gap-2">
