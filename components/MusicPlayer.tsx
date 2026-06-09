@@ -99,7 +99,7 @@ function Equalizer({ isPlaying, isMuted }: { isPlaying: boolean; isMuted: boolea
 
 export default function MusicPlayer({ className }: { className?: string }) {
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [ready, setReady] = useState(false);
   const [showTooltip, setShowTooltip] = useState(true);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -124,7 +124,7 @@ export default function MusicPlayer({ className }: { className?: string }) {
           videoId: "BNLoR8BbhgQ",
           playerVars: {
             autoplay: 1,
-            mute: 1,
+            mute: 0,
             loop: 1,
             playlist: "BNLoR8BbhgQ",
             controls: 0,
