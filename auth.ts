@@ -8,6 +8,7 @@ import { users } from "@/lib/db/schema";
 import { loginSchema } from "@/lib/validations";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  secret: process.env.AUTH_SECRET || "default_auth_secret_for_claude_architect_exam_guide_2026_orkestrai",
   session: { strategy: "jwt" },
   pages: { signIn: "/login" },
   providers: [
