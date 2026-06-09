@@ -1,6 +1,5 @@
 import Link from "next/link";
 import BrandLogo from "@/components/BrandLogo";
-import ThemeToggle from "@/components/ThemeToggle";
 
 export default function AuthLayout({
   children,
@@ -18,10 +17,6 @@ export default function AuthLayout({
             "radial-gradient(circle at 50% 18%, rgba(217,119,87,0.16), transparent 55%)",
         }}
       />
-
-      <div className="absolute right-5 top-5">
-        <ThemeToggle />
-      </div>
 
       <Link
         href="/"
