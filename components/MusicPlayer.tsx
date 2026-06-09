@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { Play, Pause, Volume2, VolumeX, Radio } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/components/language-provider";
@@ -104,6 +104,8 @@ export default function MusicPlayer({ className }: { className?: string }) {
   const [showTooltip, setShowTooltip] = useState(true);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const playerRef = useRef<any>(null);
+  const rawId = useId();
+  const playerId = `yt-player-${rawId.replace(/:/g, "")}`;
   const { language } = useLanguage();
 
   const labels = {
@@ -118,7 +120,7 @@ export default function MusicPlayer({ className }: { className?: string }) {
   useEffect(() => {
     const initPlayer = () => {
       if (window.YT && window.YT.Player && !playerRef.current) {
-        playerRef.current = new window.YT.Player("claude-fm-player-iframe", {
+        playerRef.current = new window.YT.Player(playerId, {
           height: "0",
           width: "0",
           videoId: "BNLoR8BbhgQ",
@@ -131,6 +133,7 @@ export default function MusicPlayer({ className }: { className?: string }) {
             showinfo: 0,
             rel: 0,
             enablejsapi: 1,
+            playsinline: 1,
           },
           events: {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -207,7 +210,7 @@ export default function MusicPlayer({ className }: { className?: string }) {
   return (
     <>
       {/* Hidden YouTube Target Element */}
-      <div id="claude-fm-player-iframe" className="pointer-events-none fixed -top-10 -left-10 h-0 w-0 opacity-0" />
+      <div id={playerId} className="pointer-events-none fixed -top-10 -left-10 h-0 w-0 opacity-0" />
 
       {/* Floating Control Widget */}
       <div className={cn("z-50 animate-fade-up", className)}>
