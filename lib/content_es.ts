@@ -1,4 +1,4 @@
-// Content extracted from the "Claude Certified Architect – Foundations
+// Content extracted from the "Claude Certified Architect - Foundations
 // Certification Exam Guide" (Version 0.1, Feb 2025). Structured for navigation.
 // Translated to Spanish (es).
 
@@ -8,13 +8,13 @@ export const meta = {
   title: "Claude Certified Architect",
   subtitle: "Guía de Preparación para la Certificación Foundations",
   passingScore: 720,
-  scoreRange: "100–1.000",
+  scoreRange: "100-1.000",
   format: "Opción múltiple · una respuesta correcta de cuatro",
 };
 
 export const intro = {
   paragraphs: [
-    "La certificación Claude Certified Architect – Foundations valida que los profesionales pueden tomar decisiones informadas sobre compensaciones (trade-offs) al implementar soluciones del mundo real con Claude. Este examen evalúa el conocimiento fundamental de Claude Code, el Claude Agent SDK, la API de Claude y el Model Context Protocol (MCP): las tecnologías principales utilizadas para crear aplicaciones de grado de producción con Claude.",
+    "La certificación Claude Certified Architect - Foundations valida que los profesionales pueden tomar decisiones informadas sobre compensaciones (trade-offs) al implementar soluciones del mundo real con Claude. Este examen evalúa el conocimiento fundamental de Claude Code, el Claude Agent SDK, la API de Claude y el Model Context Protocol (MCP): las tecnologías principales utilizadas para crear aplicaciones de grado de producción con Claude.",
     "Las preguntas se basan en escenarios realistas extraídos de casos de uso reales de clientes, incluida la creación de sistemas de agentes para soporte al cliente, el diseño de canales de investigación de múltiples agentes, la integración de Claude Code en flujos de trabajo de CI/CD, la creación de herramientas de productividad para desarrolladores y la extracción de datos estructurados de documentos no estructurados. Los candidatos deben demostrar no solo conocimientos conceptuales, sino también un juicio práctico sobre la arquitectura, la configuración y las compensaciones en implementaciones de producción.",
   ],
   candidate: {
@@ -875,7 +875,7 @@ export const appendix = {
     { name: "Message Batches API", detail: "50% de ahorro de costos, ventana de hasta 24 horas, correlación por custom_id, polling, sin soporte a llamadas a herramientas de múltiples turnos" },
     { name: "JSON Schema", detail: "Obligatorio frente a opcional, tipos enum, campos anulables (nullable), patrones \"otro\" + detalles, modo strict para eliminación de errores de sintaxis" },
     { name: "Pydantic", detail: "Validador de esquema, errores de validación semántica, bucles de validación-reintento" },
-    { name: "Herramientas integradas", detail: "Read, Write, Edit, Bash, Grep, Glob — propósitos y criterios de selección" },
+    { name: "Herramientas integradas", detail: "Read, Write, Edit, Bash, Grep, Glob - propósitos y criterios de selección" },
     { name: "Few-shot prompting", detail: "Ejemplos dirigidos para escenarios ambiguos, demostración de formato, reducción de falsos positivos" },
     { name: "Prompt chaining", detail: "Decomposición secuencial de tareas en pasadas enfocadas" },
     { name: "Gestión de ventana de contexto", detail: "Límites de tokens, resumización progresiva, lost-in-the-middle, extracción de contexto, archivos scratchpad" },

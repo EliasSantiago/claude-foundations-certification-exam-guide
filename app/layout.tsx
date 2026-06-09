@@ -3,14 +3,14 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 
-// Body copy: Inter — a clean, modern workhorse.
+// Body copy: Inter - a clean, modern workhorse.
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
-// Titles & subtitles: Space Grotesk — modern with character.
+// Titles & subtitles: Space Grotesk - modern with character.
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
@@ -27,7 +27,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Claude Certified Architect · Foundations Guide",
   description:
-    "An intuitive study guide for the Claude Certified Architect – Foundations certification: domains, scenarios, interactive practice questions, and hands-on exercises.",
+    "An intuitive study guide for the Claude Certified Architect - Foundations certification: domains, scenarios, interactive practice questions, and hands-on exercises.",
 };
 
 // Applied before paint to avoid a flash of the wrong theme. Light is the default.

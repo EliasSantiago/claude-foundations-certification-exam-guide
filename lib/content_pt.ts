@@ -1,4 +1,4 @@
-// Content extracted from the "Claude Certified Architect – Foundations
+// Content extracted from the "Claude Certified Architect - Foundations
 // Certification Exam Guide" (Version 0.1, Feb 2025). Structured for navigation.
 // Translated to Brazilian Portuguese (pt-BR).
 
@@ -8,13 +8,13 @@ export const meta = {
   title: "Claude Certified Architect",
   subtitle: "Guia de Preparação para a Certificação Foundations",
   passingScore: 720,
-  scoreRange: "100–1.000",
+  scoreRange: "100-1.000",
   format: "Múltipla escolha · uma resposta correta de quatro",
 };
 
 export const intro = {
   paragraphs: [
-    "A certificação Claude Certified Architect – Foundations valida que os profissionais podem tomar decisões fundamentadas sobre compensações (trade-offs) ao implementar soluções do mundo real com o Claude. Este exame testa o conhecimento fundamental no Claude Code, no Claude Agent SDK, na API do Claude e no Model Context Protocol (MCP) — as principais tecnologias usadas para criar aplicações de nível de produção com o Claude.",
+    "A certificação Claude Certified Architect - Foundations valida que os profissionais podem tomar decisões fundamentadas sobre compensações (trade-offs) ao implementar soluções do mundo real com o Claude. Este exame testa o conhecimento fundamental no Claude Code, no Claude Agent SDK, na API do Claude e no Model Context Protocol (MCP) - as principais tecnologias usadas para criar aplicações de nível de produção com o Claude.",
     "As perguntas são baseadas em cenários realistas extraídos de casos de uso reais de clientes, incluindo a construção de sistemas de agentes para suporte ao cliente, design de pipelines de pesquisa de múltiplos agentes, integração do Claude Code em fluxos de trabalho de CI/CD, construção de ferramentas de produtividade para desenvolvedores e extração de dados estruturados de documentos não estruturados. Os candidatos devem demonstrar não apenas conhecimento conceitual, mas julgamento prático sobre arquitetura, configuração e compensações em implantações de produção.",
   ],
   candidate: {
@@ -44,7 +44,7 @@ export const intro = {
     {
       label: "Palpite",
       value:
-        "Perguntas não respondidas são pontuadas como incorretas — não há penalidade por adivinhar.",
+        "Perguntas não respondidas são pontuadas como incorretas - não há penalidade por adivinhar.",
     },
     {
       label: "Estrutura do exame",
@@ -82,7 +82,7 @@ export const domains: Domain[] = [
         title: "Orquestrar sistemas de múltiplos agentes com padrões coordenador-subagente",
         knowledge: [
           "Arquitetura hub-and-spoke (estrela) onde um coordenador gerencia toda a comunicação entre subagentes, tratamento de erros e roteamento",
-          "Subagentes operam com contexto isolado — eles não herdam o histórico de conversa do coordenador automaticamente",
+          "Subagentes operam com contexto isolado - eles não herdam o histórico de conversa do coordenador automaticamente",
           "O papel do coordenador na decomposição, delegação, agregação e decisão de quais subagentes invocar",
           "Riscos de decomposição de tarefas excessivamente estreita, levando a uma cobertura incompleta de tópicos amplos",
         ],
@@ -98,7 +98,7 @@ export const domains: Domain[] = [
         title: "Configurar invocação de subagentes, passagem de contexto e criação (spawning)",
         knowledge: [
           "A ferramenta Task gera subagentes; allowedTools deve incluir \"Task\" para que um coordenador possa invocá-los",
-          "O contexto do subagente deve ser fornecido explicitamente no prompt — sem herança automática ou memória compartilhada",
+          "O contexto do subagente deve ser fornecido explicitamente no prompt - sem herança automática ou memória compartilhada",
           "A configuração AgentDefinition: descrições, prompts de sistema e restrições de ferramentas por tipo de subagente",
           "Gerenciamento de sessão baseado em fork para explorar abordagens divergentes a partir de uma linha de base compartilhada",
         ],
@@ -594,7 +594,7 @@ export const scenarios: Scenario[] = [
   {
     id: 2,
     title: "Geração de Código com o Claude Code",
-    body: "Você está usando o Claude Code para acelerar o desenvolvimento de software — geração, refatoração, depuração e documentação. Você precisa integrá-lo em seu fluxo de trabalho com comandos slash personalizados, configurações de CLAUDE.md e entender quando usar o modo de planejamento vs execução direta.",
+    body: "Você está usando o Claude Code para acelerar o desenvolvimento de software - geração, refatoração, depuração e documentação. Você precisa integrá-lo em seu fluxo de trabalho com comandos slash personalizados, configurações de CLAUDE.md e entender quando usar o modo de planejamento vs execução direta.",
     domains: ["Configuração e Fluxos de Trabalho do Claude Code", "Gerenciamento de Contexto e Confiabilidade"],
   },
   {
@@ -667,7 +667,7 @@ export const questions: Question[] = [
     ],
     answer: "A",
     explanation:
-      "Critérios explícitos de escalada com exemplos few-shot abordam a causa raiz: limites de decisão pouco claros. B falha porque a confiança autorrelatada pelo LLM é mal calibrada — o agente já está incorretamente confiante em casos difíceis. C é superdimensionado. D resolve um problema diferente; o sentimento não se correlaciona com a complexidade.",
+      "Critérios explícitos de escalada com exemplos few-shot abordam a causa raiz: limites de decisão pouco claros. B falha porque a confiança autorrelatada pelo LLM é mal calibrada - o agente já está incorretamente confiante em casos difíceis. C é superdimensionado. D resolve um problema diferente; o sentimento não se correlaciona com a complexidade.",
   },
   {
     id: 4,
@@ -682,13 +682,13 @@ export const questions: Question[] = [
     ],
     answer: "A",
     explanation:
-      "Os comandos slash de escopo do projeto ficam em .claude/commands/ dentro do repositório — sob controle de versão e disponíveis automaticamente para todos que clonam ou atualizam o repositório. B é para comandos pessoais não compartilhados via controle de versão. C é para o contexto do projeto, não para definições de comandos. D descreve um mecanismo que não existe no Claude Code.",
+      "Os comandos slash de escopo do projeto ficam em .claude/commands/ dentro do repositório - sob controle de versão e disponíveis automaticamente para todos que clonam ou atualizam o repositório. B é para comandos pessoais não compartilhados via controle de versão. C é para o contexto do projeto, não para definições de comandos. D descreve um mecanismo que não existe no Claude Code.",
   },
   {
     id: 5,
     scenario: "Geração de Código com o Claude Code",
     prompt:
-      "Você deve reestruturar a aplicação monolítica da equipe em microsserviços — alterações em dezenas de arquivos, com decisões sobre limites de serviços e dependências de módulos. Qual abordagem você deve adotar?",
+      "Você deve reestruturar a aplicação monolítica da equipe em microsserviços - alterações em dezenas de arquivos, com decisões sobre limites de serviços e dependências de módulos. Qual abordagem você deve adotar?",
     options: [
       { key: "A", text: "Entrar no modo de planejamento (plan mode) para explorar a base de código, entender as dependências e projetar uma abordagem de implementação antes de fazer alterações." },
       { key: "B", text: "Começar com a execução direta e fazer alterações incrementalmente, permitindo que a implementação revele os limites naturais do serviço." },
@@ -697,7 +697,7 @@ export const questions: Question[] = [
     ],
     answer: "A",
     explanation:
-      "O modo de planejamento foi projetado para alterações em larga escala, múltiplas abordagens válidas e decisões arquiteturais — exatamente o que a migração de monólito para microsserviços exige. B corre o risco de retrabalho caro quando as dependências surgirem tardiamente. C assume que você já conhece a estrutura correta. D ignora o fato de que a complexidade já está declarada nos requisitos.",
+      "O modo de planejamento foi projetado para alterações em larga escala, múltiplas abordagens válidas e decisões arquiteturais - exatamente o que a migração de monólito para microsserviços exige. B corre o risco de retrabalho caro quando as dependências surgirem tardiamente. C assume que você já conhece a estrutura correta. D ignora o fato de que a complexidade já está declarada nos requisitos.",
   },
   {
     id: 6,
@@ -787,7 +787,7 @@ export const questions: Question[] = [
     ],
     answer: "A",
     explanation:
-      "A Batches API oferece 50% de desconto, mas com uma janela de processamento de até 24 horas sem garantia de latência — inadequada para verificações pré-merge de bloqueio de desenvolvedores, mas excelente para relatórios noturnos tolerantes a latência. B não é viável para fluxos bloqueantes. C reflete um equívoco (custom_id correlaciona requisição/resposta). D introduz complexidade excessiva sem necessidade real.",
+      "A Batches API oferece 50% de desconto, mas com uma janela de processamento de até 24 horas sem garantia de latência - inadequada para verificações pré-merge de bloqueio de desenvolvedores, mas excelente para relatórios noturnos tolerantes a latência. B não é viável para fluxos bloqueantes. C reflete um equívoco (custom_id correlaciona requisição/resposta). D introduz complexidade excessiva sem necessidade real.",
   },
   {
     id: 12,
@@ -875,7 +875,7 @@ export const appendix = {
     { name: "Message Batches API", detail: "50% de economia de custos, janela de até 24 horas, correlação por custom_id, polling, sem suporte a chamadas de ferramentas de múltiplos turnos" },
     { name: "JSON Schema", detail: "Obrigatório vs opcional, tipos enum, campos anuláveis (nullable), padrões \"outro\" + detalhes, modo strict para eliminação de erros de sintaxe" },
     { name: "Pydantic", detail: "Validação de schema, erros de validação semântica, loops de validação-repetição" },
-    { name: "Ferramentas embutidas", detail: "Read, Write, Edit, Bash, Grep, Glob — propósitos e critérios de seleção" },
+    { name: "Ferramentas embutidas", detail: "Read, Write, Edit, Bash, Grep, Glob - propósitos e critérios de seleção" },
     { name: "Few-shot prompting", detail: "Exemplos direcionados para cenários ambíguos, demonstração de formato, redução de falsos positivos" },
     { name: "Prompt chaining", detail: "Decomposição sequencial de tarefas em passagens focadas" },
     { name: "Gerenciamento de janela de contexto", detail: "Orçamentos de tokens, sumarização progressiva, lost-in-the-middle, extração de contexto, arquivos scratchpad" },
@@ -928,7 +928,7 @@ export const appendix = {
     "Praticar engenharia de prompt: exemplos few-shot para cenários ambíguos, critérios explícitos de revisão para reduzir falsos positivos e arquiteturas de revisão de múltiplas passagens.",
     "Estudar gerenciamento de contexto: extrair fatos estruturados de saídas longas, arquivos scratchpad para sessões longas e delegação de subagentes para gerenciar limites de contexto.",
     "Revisar escalada e padrões de humanos no circuito: quando escalar (lacunas de políticas, solicitações de clientes, incapacidade de progredir) vs resolver, e roteamento de revisão baseado em confiança.",
-    "Concluir o Simulado do Exame antes de prestar a prova real — ele espelha os cenários e o formato da prova e explica as respostas para reforçar o entendimento.",
+    "Concluir o Simulado do Exame antes de prestar a prova real - ele espelha os cenários e o formato da prova e explica as respostas para reforçar o entendimento.",
   ],
 };
 

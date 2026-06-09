@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import BrandLogo from "@/components/BrandLogo";
 import { useLanguage } from "@/components/language-provider";
 import { LanguageSelector } from "@/components/Sidebar";
 
-// Home: the Claude mark, front and center, on warm near-black — with a quiet
+// Home: the Claude mark, front and center, on warm near-black - with a quiet
 // entry point into the guide.
 export default function Home() {
   const { content, t } = useLanguage();
@@ -24,7 +25,7 @@ export default function Home() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(circle at 50% 42%, rgba(217,119,87,0.18), transparent 55%)",
+              "radial-gradient(circle at 50% 42%, rgba(217,119,87,0.18), transparent 55%)",
         }}
       />
 
@@ -39,18 +40,20 @@ export default function Home() {
           Claude
         </h1>
         <p className="mt-3 max-w-md text-base text-muted sm:text-lg">
-          {meta.title} — {meta.subtitle}
+          {meta.title} - {meta.subtitle}
         </p>
         <p className="mt-4 max-w-sm text-xs text-muted/60">
           {t("loginRequiredHint")}
         </p>
 
-        <Link
-          href="/overview"
-          className="group mt-10 inline-flex items-center gap-2 rounded-full bg-claude px-7 py-3 text-sm font-medium text-on-claude transition hover:bg-claude-soft"
+        <Button
+          asChild
+          className="group mt-10 rounded-full bg-claude px-7 py-6 text-sm font-medium text-on-claude transition hover:bg-claude-soft"
         >
-          {t("enterGuide")}
-        </Link>
+          <Link href="/overview">
+            {t("enterGuide")}
+          </Link>
+        </Button>
 
         <div className="mt-6 flex items-center gap-2 text-sm text-muted">
           <Link

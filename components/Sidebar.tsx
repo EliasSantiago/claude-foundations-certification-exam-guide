@@ -8,27 +8,58 @@ import ThemeToggle from "./ThemeToggle";
 import UserMenu from "./UserMenu";
 import { OverallProgressMeter } from "./progress-ui";
 import { useLanguage, Language } from "@/components/language-provider";
-import { Languages } from "lucide-react";
+import { cn } from "@/lib/utils";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function LanguageSelector({ className = "" }: { className?: string }) {
   const { language, setLanguage } = useLanguage();
+
+  const flags: Record<Language, string> = {
+    en: "🇺🇸",
+    pt: "🇧🇷",
+    es: "🇪🇸",
+  };
+
+  const labelShort: Record<Language, string> = {
+    en: "EN",
+    pt: "PT",
+    es: "ES",
+  };
+
   return (
-    <div className={`relative inline-flex ${className}`}>
-      <select
-        value={language}
-        onChange={(e) => setLanguage(e.target.value as Language)}
-        aria-label="Change language"
-        className="absolute inset-0 cursor-pointer opacity-0"
-      >
-        <option value="en">English (EN)</option>
-        <option value="pt">Português (PT)</option>
-        <option value="es">Español (ES)</option>
-      </select>
-      <div className="pointer-events-none inline-flex h-9 items-center gap-1.5 rounded-lg border border-border bg-surface px-2.5 text-xs font-semibold text-muted transition hover:text-cream">
-        <Languages className="size-4" />
-        <span className="uppercase">{language}</span>
-      </div>
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button
+          className={cn(
+            "inline-flex h-9 items-center gap-1.5 rounded-lg border border-border bg-surface px-2.5 text-xs font-semibold text-muted transition hover:text-cream cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-ring/50",
+            className
+          )}
+          aria-label="Change language"
+        >
+          <span className="text-sm shrink-0 leading-none">{flags[language]}</span>
+          <span className="uppercase">{labelShort[language]}</span>
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="bg-surface border-border">
+        <DropdownMenuItem onClick={() => setLanguage("pt")} className="gap-2">
+          <span className="text-base shrink-0 leading-none">🇧🇷</span>
+          <span>Português (PT)</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setLanguage("en")} className="gap-2">
+          <span className="text-base shrink-0 leading-none">🇺🇸</span>
+          <span>English (EN)</span>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setLanguage("es")} className="gap-2">
+          <span className="text-base shrink-0 leading-none">🇪🇸</span>
+          <span>Español (ES)</span>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
 
@@ -115,7 +146,7 @@ export default function Sidebar() {
             {links}
             <div className="mt-6 space-y-4 border-t border-border pt-6">
               <OverallProgressMeter />
-              <div onClick={() => setOpen(false)} className="flex items-center justify-between gap-3">
+              <div className="flex items-center justify-between gap-3">
                 <UserMenu />
                 <LanguageSelector />
               </div>

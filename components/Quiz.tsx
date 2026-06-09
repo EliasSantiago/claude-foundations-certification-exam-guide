@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useLanguage } from "@/components/language-provider";
+import { Button } from "@/components/ui/button";
 
 type Choice = "A" | "B" | "C" | "D";
 
@@ -63,12 +64,14 @@ export default function Quiz() {
               </span>
             </span>
           </div>
-          <button
+          <Button
             onClick={reset}
-            className="rounded-md border border-border px-3 py-1.5 text-xs text-muted transition hover:text-cream"
+            variant="outline"
+            size="sm"
+            className="h-8 px-3 text-xs"
           >
             {t("reset")}
-          </button>
+          </Button>
         </div>
         <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-surface-2">
           <div
@@ -161,13 +164,13 @@ export default function Quiz() {
 
               <div className="mt-4 flex items-center gap-3">
                 {!isRevealed ? (
-                  <button
+                  <Button
                     onClick={() => reveal(q.id)}
                     disabled={!picked}
-                    className="rounded-lg bg-claude px-4 py-2 text-sm font-medium text-on-claude transition enabled:hover:bg-claude-soft disabled:cursor-not-allowed disabled:opacity-40"
+                    className="rounded-lg bg-claude text-on-claude hover:bg-claude-soft"
                   >
                     {t("checkAnswer")}
-                  </button>
+                  </Button>
                 ) : (
                   <span
                     className={`text-sm font-semibold ${

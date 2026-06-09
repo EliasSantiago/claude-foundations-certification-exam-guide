@@ -1,17 +1,17 @@
-// Content extracted from the "Claude Certified Architect – Foundations
+// Content extracted from the "Claude Certified Architect - Foundations
 // Certification Exam Guide" (Version 0.1, Feb 2025). Structured for navigation.
 
 export const meta = {
   title: "Claude Certified Architect",
   subtitle: "Foundations Certification Exam Guide",
   passingScore: 720,
-  scoreRange: "100–1,000",
+  scoreRange: "100-1,000",
   format: "Multiple choice · one correct answer of four",
 };
 
 export const intro = {
   paragraphs: [
-    "The Claude Certified Architect – Foundations certification validates that practitioners can make informed decisions about tradeoffs when implementing real-world solutions with Claude. This exam tests foundational knowledge across Claude Code, the Claude Agent SDK, the Claude API, and Model Context Protocol (MCP) — the core technologies used to build production-grade applications with Claude.",
+    "The Claude Certified Architect - Foundations certification validates that practitioners can make informed decisions about tradeoffs when implementing real-world solutions with Claude. This exam tests foundational knowledge across Claude Code, the Claude Agent SDK, the Claude API, and Model Context Protocol (MCP) - the core technologies used to build production-grade applications with Claude.",
     "Questions are grounded in realistic scenarios drawn from actual customer use cases, including building agentic systems for customer support, designing multi-agent research pipelines, integrating Claude Code into CI/CD workflows, building developer productivity tools, and extracting structured data from unstructured documents. Candidates must demonstrate not only conceptual knowledge but practical judgment about architecture, configuration, and tradeoffs in production deployments.",
   ],
   candidate: {
@@ -36,12 +36,12 @@ export const intro = {
     {
       label: "Scoring",
       value:
-        "Pass/fail against a standard set by subject matter experts. Scaled score 100–1,000; minimum passing score is 720.",
+        "Pass/fail against a standard set by subject matter experts. Scaled score 100-1,000; minimum passing score is 720.",
     },
     {
       label: "Guessing",
       value:
-        "Unanswered questions are scored as incorrect — there is no penalty for guessing.",
+        "Unanswered questions are scored as incorrect - there is no penalty for guessing.",
     },
     {
       label: "Exam structure",
@@ -72,7 +72,7 @@ export const domains: Domain[] = [
     title: "Agentic Architecture & Orchestration",
     weight: 27,
     blurb:
-      "Designing agentic loops, coordinator–subagent systems, multi-step workflows with enforcement, hooks, task decomposition, and session state.",
+      "Designing agentic loops, coordinator-subagent systems, multi-step workflows with enforcement, hooks, task decomposition, and session state.",
     tasks: [
       {
         code: "1.1",
@@ -93,7 +93,7 @@ export const domains: Domain[] = [
         title: "Orchestrate multi-agent systems with coordinator-subagent patterns",
         knowledge: [
           "Hub-and-spoke architecture where a coordinator manages all inter-subagent communication, error handling, and routing",
-          "Subagents operate with isolated context — they do not inherit the coordinator's conversation history automatically",
+          "Subagents operate with isolated context - they do not inherit the coordinator's conversation history automatically",
           "The coordinator's role in decomposition, delegation, aggregation, and deciding which subagents to invoke",
           "Risks of overly narrow task decomposition leading to incomplete coverage of broad topics",
         ],
@@ -109,7 +109,7 @@ export const domains: Domain[] = [
         title: "Configure subagent invocation, context passing, and spawning",
         knowledge: [
           "The Task tool spawns subagents; allowedTools must include \"Task\" for a coordinator to invoke them",
-          "Subagent context must be explicitly provided in the prompt — no automatic inheritance or shared memory",
+          "Subagent context must be explicitly provided in the prompt - no automatic inheritance or shared memory",
           "The AgentDefinition config: descriptions, system prompts, and tool restrictions per subagent type",
           "Fork-based session management for exploring divergent approaches from a shared baseline",
         ],
@@ -612,7 +612,7 @@ export const scenarios: Scenario[] = [
   {
     id: 2,
     title: "Code Generation with Claude Code",
-    body: "You are using Claude Code to accelerate software development — generation, refactoring, debugging, and documentation. You need to integrate it into your workflow with custom slash commands, CLAUDE.md configurations, and to understand when to use plan mode vs direct execution.",
+    body: "You are using Claude Code to accelerate software development - generation, refactoring, debugging, and documentation. You need to integrate it into your workflow with custom slash commands, CLAUDE.md configurations, and to understand when to use plan mode vs direct execution.",
     domains: ["Claude Code Configuration & Workflows", "Context Management & Reliability"],
   },
   {
@@ -694,7 +694,7 @@ export const questions: Question[] = [
     ],
     answer: "A",
     explanation:
-      "Explicit escalation criteria with few-shot examples address the root cause: unclear decision boundaries. B fails because LLM self-reported confidence is poorly calibrated — the agent is already wrongly confident on hard cases. C is over-engineered. D solves a different problem; sentiment doesn't correlate with complexity.",
+      "Explicit escalation criteria with few-shot examples address the root cause: unclear decision boundaries. B fails because LLM self-reported confidence is poorly calibrated - the agent is already wrongly confident on hard cases. C is over-engineered. D solves a different problem; sentiment doesn't correlate with complexity.",
   },
   {
     id: 4,
@@ -709,13 +709,13 @@ export const questions: Question[] = [
     ],
     answer: "A",
     explanation:
-      "Project-scoped slash commands live in .claude/commands/ within the repo — version-controlled and automatically available to everyone who clones or pulls. B is for personal commands not shared via version control. C is for project context, not command definitions. D describes a mechanism that doesn't exist in Claude Code.",
+      "Project-scoped slash commands live in .claude/commands/ within the repo - version-controlled and automatically available to everyone who clones or pulls. B is for personal commands not shared via version control. C is for project context, not command definitions. D describes a mechanism that doesn't exist in Claude Code.",
   },
   {
     id: 5,
     scenario: "Code Generation with Claude Code",
     prompt:
-      "You must restructure the team's monolithic application into microservices — changes across dozens of files, with decisions about service boundaries and module dependencies. Which approach should you take?",
+      "You must restructure the team's monolithic application into microservices - changes across dozens of files, with decisions about service boundaries and module dependencies. Which approach should you take?",
     options: [
       { key: "A", text: "Enter plan mode to explore the codebase, understand dependencies, and design an implementation approach before making changes." },
       { key: "B", text: "Start with direct execution and make changes incrementally, letting the implementation reveal the natural service boundaries." },
@@ -724,7 +724,7 @@ export const questions: Question[] = [
     ],
     answer: "A",
     explanation:
-      "Plan mode is designed for large-scale changes, multiple valid approaches, and architectural decisions — exactly what monolith-to-microservices requires. B risks costly rework when dependencies surface late. C assumes you already know the right structure. D ignores that the complexity is already stated in the requirements.",
+      "Plan mode is designed for large-scale changes, multiple valid approaches, and architectural decisions - exactly what monolith-to-microservices requires. B risks costly rework when dependencies surface late. C assumes you already know the right structure. D ignores that the complexity is already stated in the requirements.",
   },
   {
     id: 6,
@@ -739,7 +739,7 @@ export const questions: Question[] = [
     ],
     answer: "A",
     explanation:
-      ".claude/rules/ with glob patterns (e.g., **/*.test.tsx) applies conventions by file path regardless of directory — essential for files spread throughout. B relies on inference. C requires manual invocation, contradicting \"automatic.\" D can't easily handle files spread across many directories since CLAUDE.md is directory-bound.",
+      ".claude/rules/ with glob patterns (e.g., **/*.test.tsx) applies conventions by file path regardless of directory - essential for files spread throughout. B relies on inference. C requires manual invocation, contradicting \"automatic.\" D can't easily handle files spread across many directories since CLAUDE.md is directory-bound.",
   },
   {
     id: 7,
@@ -754,7 +754,7 @@ export const questions: Question[] = [
     ],
     answer: "B",
     explanation:
-      "The logs reveal the cause directly: the coordinator decomposed \"creative industries\" into only visual-arts subtasks, omitting music, writing, and film. The subagents executed their assigned tasks correctly — the problem is what they were assigned. A, C, and D blame downstream agents that are working correctly within scope.",
+      "The logs reveal the cause directly: the coordinator decomposed \"creative industries\" into only visual-arts subtasks, omitting music, writing, and film. The subagents executed their assigned tasks correctly - the problem is what they were assigned. A, C, and D blame downstream agents that are working correctly within scope.",
   },
   {
     id: 8,
@@ -769,13 +769,13 @@ export const questions: Question[] = [
     ],
     answer: "A",
     explanation:
-      "Structured error context gives the coordinator what it needs to decide — retry with a modified query, try an alternative, or proceed with partial results. B's generic status hides context. C suppresses the error by marking failure as success. D terminates the whole workflow unnecessarily when recovery could succeed.",
+      "Structured error context gives the coordinator what it needs to decide - retry with a modified query, try an alternative, or proceed with partial results. B's generic status hides context. C suppresses the error by marking failure as success. D terminates the whole workflow unnecessarily when recovery could succeed.",
   },
   {
     id: 9,
     scenario: "Multi-Agent Research System",
     prompt:
-      "The synthesis agent frequently needs to verify claims. Currently it returns control to the coordinator, which invokes the web search agent and re-invokes synthesis — adding 2-3 round trips and 40% latency. 85% of verifications are simple fact-checks; 15% require deeper investigation. What's the most effective approach?",
+      "The synthesis agent frequently needs to verify claims. Currently it returns control to the coordinator, which invokes the web search agent and re-invokes synthesis - adding 2-3 round trips and 40% latency. 85% of verifications are simple fact-checks; 15% require deeper investigation. What's the most effective approach?",
     options: [
       { key: "A", text: "Give the synthesis agent a scoped verify_fact tool for simple lookups, while complex verifications continue delegating to the web search agent through the coordinator." },
       { key: "B", text: "Have the synthesis agent batch all verification needs and return them to the coordinator at the end of its pass, which sends them to the web search agent at once." },
@@ -814,7 +814,7 @@ export const questions: Question[] = [
     ],
     answer: "A",
     explanation:
-      "The Batches API offers 50% savings but up to 24-hour processing with no latency SLA — unsuitable for blocking pre-merge checks, ideal for overnight reports. B relies on \"often faster\" which isn't acceptable for blocking work. C reflects a misconception (custom_id correlates results). D adds needless complexity over simply matching each API to its use case.",
+      "The Batches API offers 50% savings but up to 24-hour processing with no latency SLA - unsuitable for blocking pre-merge checks, ideal for overnight reports. B relies on \"often faster\" which isn't acceptable for blocking work. C reflects a misconception (custom_id correlates results). D adds needless complexity over simply matching each API to its use case.",
   },
   {
     id: 12,
@@ -910,7 +910,7 @@ export const appendix = {
     { name: "Message Batches API", detail: "50% cost savings, up to 24-hour window, custom_id correlation, polling, no multi-turn tool calling" },
     { name: "JSON Schema", detail: "Required vs optional, enum types, nullable fields, \"other\" + detail patterns, strict mode for syntax-error elimination" },
     { name: "Pydantic", detail: "Schema validation, semantic validation errors, validation-retry loops" },
-    { name: "Built-in tools", detail: "Read, Write, Edit, Bash, Grep, Glob — purposes and selection criteria" },
+    { name: "Built-in tools", detail: "Read, Write, Edit, Bash, Grep, Glob - purposes and selection criteria" },
     { name: "Few-shot prompting", detail: "Targeted examples for ambiguous scenarios, format demonstration, generalization" },
     { name: "Prompt chaining", detail: "Sequential task decomposition into focused passes" },
     { name: "Context window management", detail: "Token budgets, progressive summarization, lost-in-the-middle, context extraction, scratchpad files" },
@@ -963,7 +963,7 @@ export const appendix = {
     "Practice prompt engineering: few-shot examples for ambiguous scenarios, explicit review criteria to reduce false positives, and multi-pass review architectures.",
     "Study context management: extracting structured facts from verbose outputs, scratchpad files for long sessions, and subagent delegation to manage context limits.",
     "Review escalation and human-in-the-loop patterns: when to escalate (policy gaps, customer requests, inability to progress) vs resolve, and confidence-based review routing.",
-    "Complete the Practice Exam before sitting the real exam — it mirrors the scenarios and format and explains answers to reinforce understanding.",
+    "Complete the Practice Exam before sitting the real exam - it mirrors the scenarios and format and explains answers to reinforce understanding.",
   ],
 };
 

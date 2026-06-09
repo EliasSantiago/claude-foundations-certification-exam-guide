@@ -62,11 +62,11 @@ export const uiTranslations = {
     reset: "Reset",
     youScored: "You scored",
     correct: "correct",
-    abovePassingLine: "Above the 72% passing line on these samples — keep it up.",
-    belowPassingLine: "Below the 72% line on these samples — review the explanations and the domains.",
+    abovePassingLine: "Above the 72% passing line on these samples - keep it up.",
+    belowPassingLine: "Below the 72% line on these samples - review the explanations and the domains.",
     checkAnswer: "Check answer",
     correctBadge: "✓ Correct",
-    incorrectBadge: "✗ Incorrect — correct answer is",
+    incorrectBadge: "✗ Incorrect - correct answer is",
     why: "Why",
 
     // Miscellaneous UI strings
@@ -78,11 +78,11 @@ export const uiTranslations = {
     reference: "Reference",
     enterGuide: "Enter the guide",
     studyGuideVersion: "Study guide · v0.1 · Unofficial companion",
-    overviewIntro: "What the Claude Certified Architect – Foundations exam covers, who it's for, and how it's scored.",
+    overviewIntro: "What the Claude Certified Architect - Foundations exam covers, who it's for, and how it's scored.",
     domainsIntro: "The five scored domains and their task statements. Expand any task to see the knowledge and skills it tests. Jump to a domain below.",
     exercisesIntro: "Four labs that build practical familiarity across the domains. Work through them with the Agent SDK, Claude Code, and the Claude API to turn knowledge into judgment.",
     scenariosIntro: "The exam presents 4 scenarios picked at random from these 6. Each frames a realistic production context for a set of questions. Know the moving parts of each.",
-    questionsIntro: "Twelve sample questions in the exam's format — one correct answer of four. Pick an option, check it, and read the explanation. Your running score appears at the top.",
+    questionsIntro: "Twelve sample questions in the exam's format - one correct answer of four. Pick an option, check it, and read the explanation. Your running score appears at the top.",
     appendixIntro: "Technologies and concepts you may see, what's explicitly in and out of scope, and the recommended path to prepare.",
   },
   pt: {
@@ -146,11 +146,11 @@ export const uiTranslations = {
     reset: "Reiniciar",
     youScored: "Você acertou",
     correct: "corretas",
-    abovePassingLine: "Acima da linha de aprovação de 72% nestas amostras — continue assim.",
-    belowPassingLine: "Abaixo da linha de 72% nestas amostras — revise as explicações e os domínios.",
+    abovePassingLine: "Acima da linha de aprovação de 72% nestas amostras - continue assim.",
+    belowPassingLine: "Abaixo da linha de 72% nestas amostras - revise as explicações e os domínios.",
     checkAnswer: "Verificar resposta",
     correctBadge: "✓ Correto",
-    incorrectBadge: "✗ Incorreto — a resposta correta é",
+    incorrectBadge: "✗ Incorreto - a resposta correta é",
     why: "Por quê",
 
     // Miscellaneous UI strings
@@ -162,11 +162,11 @@ export const uiTranslations = {
     reference: "Referência",
     enterGuide: "Entrar no guia",
     studyGuideVersion: "Guia de estudos · v0.1 · Acompanhante não oficial",
-    overviewIntro: "O que o exame Claude Certified Architect – Foundations cobre, para quem é e como é pontuado.",
+    overviewIntro: "O que o exame Claude Certified Architect - Foundations cobre, para quem é e como é pontuado.",
     domainsIntro: "Os cinco domínios pontuados e seus tópicos de tarefas. Expanda qualquer tarefa para ver o conhecimento e as habilidades que ela testa. Pule para um domínio abaixo.",
     exercisesIntro: "Quatro laboratórios que desenvolvem familiaridade prática nos domínios. Trabalhe neles com o Agent SDK, Claude Code e a API do Claude para transformar conhecimento em julgamento.",
     scenariosIntro: "O exame apresenta 4 cenários escolhidos aleatoriamente a partir destes 6. Cada um enquadra um contexto realista de produção para um conjunto de perguntas. Conheça as partes móveis de cada um.",
-    questionsIntro: "Doze perguntas de exemplo no formato do exame — uma resposta correta de quatro. Escolha uma opção, verifique-a e leia a explicação. Sua pontuação atual aparece no topo.",
+    questionsIntro: "Doze perguntas de exemplo no formato do exame - uma resposta correta de quatro. Escolha uma opção, verifique-a e leia a explicação. Sua pontuação atual aparece no topo.",
     appendixIntro: "Tecnologias e conceitos que você pode ver, o que está explicitamente dentro e fora do escopo e o caminho recomendado para se preparar.",
   },
   es: {
@@ -234,7 +234,7 @@ export const uiTranslations = {
     belowPassingLine: "Por debajo de la línea del 72% en estas muestras. Revisa las explicaciones y los dominios.",
     checkAnswer: "Verificar respuesta",
     correctBadge: "✓ Correcto",
-    incorrectBadge: "✗ Incorrecto — la respuesta correcta es",
+    incorrectBadge: "✗ Incorrecto - la respuesta correcta es",
     why: "Por qué",
 
     // Miscellaneous UI strings
