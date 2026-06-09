@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
       {/* Language switcher top right */}
-      <div className="absolute right-6 top-6 z-30">
+      <div className="absolute right-6 top-6 z-30 md:hidden">
         <LanguageSelector />
       </div>
 

@@ -3,6 +3,8 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import MusicPlayer from "@/components/MusicPlayer";
+import { LanguageSelector } from "@/components/Sidebar";
+import ThemeToggle from "@/components/ThemeToggle";
 
 // Body copy: Inter - a clean, modern workhorse.
 const inter = Inter({
@@ -57,7 +59,14 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <Providers>
           {children}
-          <MusicPlayer />
+          {/* Desktop Global Controls Bar */}
+          <div className="fixed top-6 right-6 z-50 hidden md:flex items-center gap-2.5">
+            <MusicPlayer className="relative" />
+            <LanguageSelector />
+            <ThemeToggle />
+          </div>
+          {/* Mobile Music Player (only visible on mobile, positioned bottom-right) */}
+          <MusicPlayer className="fixed bottom-4 right-4 md:hidden" />
         </Providers>
       </body>
     </html>

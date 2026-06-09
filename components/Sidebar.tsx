@@ -171,10 +171,6 @@ export default function Sidebar() {
           <OverallProgressMeter />
           <div className="flex items-center justify-between gap-3">
             <UserMenu />
-            <div className="flex items-center gap-2">
-              <LanguageSelector />
-              <ThemeToggle />
-            </div>
           </div>
           <span className="block text-xs text-muted/60">
             {t("unofficialCompanion")} · v0.1

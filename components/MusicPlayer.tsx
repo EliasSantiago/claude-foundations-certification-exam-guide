@@ -97,7 +97,7 @@ function Equalizer({ isPlaying, isMuted }: { isPlaying: boolean; isMuted: boolea
   );
 }
 
-export default function MusicPlayer() {
+export default function MusicPlayer({ className }: { className?: string }) {
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [ready, setReady] = useState(false);
@@ -209,7 +209,7 @@ export default function MusicPlayer() {
       <div id="claude-fm-player-iframe" className="pointer-events-none fixed -top-10 -left-10 h-0 w-0 opacity-0" />
 
       {/* Floating Control Widget */}
-      <div className="fixed z-50 md:top-6 md:right-28 md:bottom-auto bottom-4 right-4 animate-fade-up">
+      <div className={cn("z-50 animate-fade-up", className)}>
         {/* Tooltip hint to unmute */}
         {isMuted && showTooltip && (
           <div className="absolute right-0 bottom-full md:bottom-auto md:top-full mb-2 md:mb-0 md:mt-2 w-48 rounded-lg border border-claude-dim bg-surface p-2 text-center text-xs font-medium text-cream shadow-xl animate-fade-up">
