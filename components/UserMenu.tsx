@@ -4,6 +4,7 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { LogOut } from "lucide-react";
 
+import { useLanguage } from "@/components/language-provider";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,6 +26,7 @@ function initials(name?: string | null) {
 
 export default function UserMenu() {
   const { data: session, status } = useSession();
+  const { t } = useLanguage();
 
   if (status === "loading") {
     return <div className="h-9 w-9 animate-pulse rounded-full bg-surface-2" />;
@@ -34,10 +36,10 @@ export default function UserMenu() {
     return (
       <div className="flex items-center gap-1.5">
         <Button asChild variant="ghost" size="sm">
-          <Link href="/login">Entrar</Link>
+          <Link href="/login">{t("signIn")}</Link>
         </Button>
         <Button asChild size="sm">
-          <Link href="/register">Criar conta</Link>
+          <Link href="/register">{t("createAccount")}</Link>
         </Button>
       </div>
     );
@@ -50,7 +52,7 @@ export default function UserMenu() {
       <DropdownMenuTrigger asChild>
         <button
           className="flex items-center gap-2 rounded-full outline-none transition focus-visible:ring-2 focus-visible:ring-ring/50"
-          aria-label="Abrir menu da conta"
+          aria-label={t("openAccountMenu")}
         >
           <Avatar>
             <AvatarFallback>{initials(name)}</AvatarFallback>
@@ -70,7 +72,7 @@ export default function UserMenu() {
           onClick={() => signOut({ callbackUrl: "/" })}
         >
           <LogOut className="size-4" />
-          Sair
+          {t("signOut")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

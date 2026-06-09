@@ -5,21 +5,30 @@ import { ChevronDown } from "lucide-react";
 
 import type { Domain } from "@/lib/content";
 import { useProgress } from "@/components/progress-provider";
+import { useLanguage } from "@/components/language-provider";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
 import { domainTaskKey, countDone, percent } from "@/lib/progress";
 
 export default function DomainSection({ domain }: { domain: Domain }) {
   const { authenticated, completed } = useProgress();
+  const { t, language } = useLanguage();
   const keys = domain.tasks.map((t) => domainTaskKey(t.code));
   const done = countDone(keys, completed);
   const pct = percent(done, keys.length);
+
+  const domainLabel =
+    language === "pt"
+      ? "Domínio"
+      : language === "es"
+        ? "Dominio"
+        : "Domain";
 
   return (
     <section id={`domain-${domain.id}`} className="scroll-mt-6">
       <div className="flex items-baseline justify-between gap-4 border-b border-border pb-4">
         <h2 className="text-2xl font-semibold text-cream">
-          <span className="text-claude">Domain {domain.id}.</span> {domain.title}
+          <span className="text-claude">{domainLabel} {domain.id}.</span> {domain.title}
         </h2>
         <span className="shrink-0 rounded-full bg-surface-2 px-3 py-1 text-sm font-semibold text-claude">
           {domain.weight}%
@@ -31,7 +40,7 @@ export default function DomainSection({ domain }: { domain: Domain }) {
         <div className="mt-5 flex items-center gap-3">
           <Progress value={pct} className="h-2 flex-1" />
           <span className="shrink-0 text-xs font-medium text-muted">
-            {done}/{keys.length} concluídos
+            {done}/{keys.length} {t("completedBadge").toLowerCase()}
           </span>
         </div>
       )}
@@ -48,6 +57,7 @@ export default function DomainSection({ domain }: { domain: Domain }) {
 function TaskItem({ task }: { task: Domain["tasks"][number] }) {
   const [open, setOpen] = useState(false);
   const { authenticated, isDone, toggle } = useProgress();
+  const { t } = useLanguage();
   const key = domainTaskKey(task.code);
   const checked = isDone(key);
 
@@ -62,7 +72,7 @@ function TaskItem({ task }: { task: Domain["tasks"][number] }) {
           <Checkbox
             checked={checked}
             onCheckedChange={(v) => toggle(key, v === true)}
-            aria-label={`Marcar tarefa ${task.code} como concluída`}
+            aria-label={`${t("markTaskCompleted")}: ${task.code}`}
           />
         )}
         <button
@@ -92,7 +102,7 @@ function TaskItem({ task }: { task: Domain["tasks"][number] }) {
         <div className="grid gap-6 border-t border-border px-4 py-5 sm:grid-cols-2">
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-wider text-claude">
-              Knowledge of
+              {t("knowledgeOf")}
             </h4>
             <ul className="mt-3 space-y-2">
               {task.knowledge.map((k, i) => (
@@ -105,7 +115,7 @@ function TaskItem({ task }: { task: Domain["tasks"][number] }) {
           </div>
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-wider text-claude">
-              Skills in
+              {t("skillsIn")}
             </h4>
             <ul className="mt-3 space-y-2">
               {task.skills.map((s, i) => (

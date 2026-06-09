@@ -1,25 +1,32 @@
+"use client";
+
 import { PageHeader, PageNav } from "@/components/PageShell";
 import {
   LoginToTrackHint,
   SectionProgress,
   StudyCheck,
 } from "@/components/progress-ui";
-import { scenarios } from "@/lib/content";
+import { useLanguage, PageTitle } from "@/components/language-provider";
 import { allScenarioKeys, scenarioKey } from "@/lib/progress";
 
-export const metadata = { title: "Scenarios · Foundations Guide" };
-
 export default function ScenariosPage() {
+  const { content, t } = useLanguage();
+  const { scenarios, navItems } = content;
+
+  const activeNav = navItems.find((n) => n.href === "/scenarios");
+  const title = activeNav ? activeNav.label : "Cenários";
+
   return (
     <div className="prose-guide">
+      <PageTitle title={title} />
       <PageHeader
-        eyebrow="Exam context"
-        title="The six scenarios"
-        intro="The exam presents 4 scenarios picked at random from these 6. Each frames a realistic production context for a set of questions. Know the moving parts of each."
+        eyebrow={t("examContext")}
+        title={title}
+        intro={t("scenariosIntro")}
       />
 
       <LoginToTrackHint />
-      <SectionProgress keys={allScenarioKeys} noun="cenários" />
+      <SectionProgress keys={allScenarioKeys} noun="scenarios" />
 
       <div className="space-y-5">
         {scenarios.map((s) => (
@@ -47,7 +54,7 @@ export default function ScenariosPage() {
                 <div className="mt-5 border-t border-border pt-4">
                   <StudyCheck
                     itemKey={scenarioKey(s.id)}
-                    label="Marcar cenário como estudado"
+                    label={t("markScenarioStudied")}
                   />
                 </div>
               </div>

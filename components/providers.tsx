@@ -3,11 +3,14 @@
 import { SessionProvider } from "next-auth/react";
 
 import { ProgressProvider } from "@/components/progress-provider";
+import { LanguageProvider } from "@/components/language-provider";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <SessionProvider>
-      <ProgressProvider>{children}</ProgressProvider>
+      <LanguageProvider>
+        <ProgressProvider>{children}</ProgressProvider>
+      </LanguageProvider>
     </SessionProvider>
   );
 }

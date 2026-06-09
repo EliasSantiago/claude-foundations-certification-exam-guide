@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import { navItems } from "@/lib/content";
+import { useLanguage } from "@/components/language-provider";
 
 export function PageHeader({
   eyebrow,
@@ -29,6 +31,8 @@ export function PageHeader({
 
 // Prev / next navigation derived from the sidebar ordering.
 export function PageNav({ current }: { current: string }) {
+  const { content, t } = useLanguage();
+  const { navItems } = content;
   const idx = navItems.findIndex((n) => n.href === current);
   const prev = idx > 0 ? navItems[idx - 1] : null;
   const next = idx >= 0 && idx < navItems.length - 1 ? navItems[idx + 1] : null;
@@ -40,7 +44,7 @@ export function PageNav({ current }: { current: string }) {
           href={prev.href}
           className="group flex-1 rounded-xl border border-border bg-surface p-4 transition hover:border-claude-dim"
         >
-          <span className="text-xs text-muted">← Previous</span>
+          <span className="text-xs text-muted">{t("previous")}</span>
           <span className="mt-1 block font-medium text-cream group-hover:text-claude-soft">
             {prev.label}
           </span>
@@ -53,7 +57,7 @@ export function PageNav({ current }: { current: string }) {
           href={next.href}
           className="group flex-1 rounded-xl border border-border bg-surface p-4 text-right transition hover:border-claude-dim"
         >
-          <span className="text-xs text-muted">Next →</span>
+          <span className="text-xs text-muted">{t("next")}</span>
           <span className="mt-1 block font-medium text-cream group-hover:text-claude-soft">
             {next.label}
           </span>

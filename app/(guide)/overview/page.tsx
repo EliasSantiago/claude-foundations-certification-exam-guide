@@ -1,17 +1,24 @@
+"use client";
+
 import Link from "next/link";
 import { PageHeader, PageNav } from "@/components/PageShell";
 import { ProgressDashboard } from "@/components/progress-ui";
-import { meta, intro, domains } from "@/lib/content";
-
-export const metadata = { title: "Overview · Foundations Guide" };
+import { useLanguage, PageTitle } from "@/components/language-provider";
 
 export default function OverviewPage() {
+  const { content, t } = useLanguage();
+  const { meta, intro, domains, navItems } = content;
+
+  const activeNav = navItems.find((n) => n.href === "/overview");
+  const title = activeNav ? activeNav.label : "Visão Geral";
+
   return (
     <div className="prose-guide">
+      <PageTitle title={title} />
       <PageHeader
-        eyebrow="Start here"
-        title="Overview"
-        intro="What the Claude Certified Architect – Foundations exam covers, who it's for, and how it's scored."
+        eyebrow={t("startHere")}
+        title={title}
+        intro={t("overviewIntro")}
       />
 
       {/* Personal progress / sign-up CTA */}
@@ -22,10 +29,10 @@ export default function OverviewPage() {
       {/* Quick stat cards */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {[
-          { k: "Passing score", v: String(meta.passingScore) },
-          { k: "Score range", v: meta.scoreRange },
-          { k: "Domains", v: "5" },
-          { k: "Scenarios", v: "4 of 6" },
+          { k: t("score") === "Pontuação" ? "Pontuação de aprovação" : t("score") === "Puntuación" ? "Puntuación de aprobación" : "Passing score", v: String(meta.passingScore) },
+          { k: t("score") === "Pontuação" ? "Faixa de pontuação" : t("score") === "Puntuación" ? "Rango de puntuación" : "Score range", v: meta.scoreRange },
+          { k: t("domains"), v: "5" },
+          { k: t("scenarios"), v: "4" },
         ].map((s) => (
           <div
             key={s.k}
@@ -45,7 +52,9 @@ export default function OverviewPage() {
 
       {/* Domain weighting bars */}
       <section className="mt-12">
-        <h2 className="text-xl font-semibold text-cream">Content domains & weighting</h2>
+        <h2 className="text-xl font-semibold text-cream">
+          {t("score") === "Pontuação" ? "Domínios de conteúdo e peso" : t("score") === "Puntuación" ? "Dominios de contenido y peso" : "Content domains & weighting"}
+        </h2>
         <div className="mt-5 space-y-4">
           {domains.map((d) => (
             <Link
@@ -55,7 +64,7 @@ export default function OverviewPage() {
             >
               <div className="flex items-center justify-between gap-4">
                 <span className="text-sm font-medium text-cream">
-                  Domain {d.id}: {d.title}
+                  {t("domains").slice(0, -1)} {d.id}: {d.title}
                 </span>
                 <span className="shrink-0 text-sm font-semibold text-claude">
                   {d.weight}%
@@ -74,7 +83,9 @@ export default function OverviewPage() {
 
       {/* Target candidate */}
       <section className="mt-12">
-        <h2 className="text-xl font-semibold text-cream">Target candidate</h2>
+        <h2 className="text-xl font-semibold text-cream">
+          {t("score") === "Pontuação" ? "Candidato ideal" : t("score") === "Puntuación" ? "Candidato ideal" : "Target candidate"}
+        </h2>
         <p className="mt-3">{intro.candidate.summary}</p>
         <ul className="mt-4 space-y-2">
           {intro.candidate.bullets.map((b, i) => (
@@ -88,7 +99,9 @@ export default function OverviewPage() {
 
       {/* Exam facts */}
       <section className="mt-12">
-        <h2 className="text-xl font-semibold text-cream">Exam content & format</h2>
+        <h2 className="text-xl font-semibold text-cream">
+          {t("score") === "Pontuação" ? "Formato e conteúdo do exame" : t("score") === "Puntuación" ? "Formato y contenido del examen" : "Exam content & format"}
+        </h2>
         <div className="mt-5 grid gap-3 sm:grid-cols-2">
           {intro.examFacts.map((f) => (
             <div

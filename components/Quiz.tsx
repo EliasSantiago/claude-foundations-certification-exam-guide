@@ -1,13 +1,15 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { questions } from "@/lib/content";
+import { useLanguage } from "@/components/language-provider";
 
 type Choice = "A" | "B" | "C" | "D";
 
 export default function Quiz() {
   const [answers, setAnswers] = useState<Record<number, Choice>>({});
   const [revealed, setRevealed] = useState<Record<number, boolean>>({});
+  const { content, t, language } = useLanguage();
+  const { questions } = content;
 
   const answeredCount = Object.keys(revealed).length;
   const correctCount = useMemo(
@@ -16,7 +18,7 @@ export default function Quiz() {
         (n, q) => (revealed[q.id] && answers[q.id] === q.answer ? n + 1 : n),
         0,
       ),
-    [answers, revealed],
+    [answers, revealed, questions],
   );
 
   const select = (qid: number, choice: Choice) => {
@@ -42,14 +44,14 @@ export default function Quiz() {
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <span className="text-sm text-muted">
-              Answered{" "}
+              {t("answered")}{" "}
               <span className="font-semibold text-cream">
                 {answeredCount}/{questions.length}
               </span>
             </span>
             <span className="hidden h-4 w-px bg-border sm:block" />
             <span className="text-sm text-muted">
-              Score{" "}
+              {t("score")}{" "}
               <span
                 className={`font-semibold ${
                   allDone && correctCount / questions.length >= 0.72
@@ -65,7 +67,7 @@ export default function Quiz() {
             onClick={reset}
             className="rounded-md border border-border px-3 py-1.5 text-xs text-muted transition hover:text-cream"
           >
-            Reset
+            {t("reset")}
           </button>
         </div>
         <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-surface-2">
@@ -78,15 +80,15 @@ export default function Quiz() {
 
       {allDone && (
         <div className="mb-8 animate-fade-up rounded-2xl border border-claude-dim bg-surface p-6 text-center">
-          <p className="text-sm text-muted">You scored</p>
+          <p className="text-sm text-muted">{t("youScored")}</p>
           <p className="mt-1 text-4xl font-semibold text-claude">
             {Math.round((correctCount / questions.length) * 100)}%
           </p>
           <p className="mt-2 text-sm text-muted">
-            {correctCount} of {questions.length} correct ·{" "}
+            {correctCount} {language === "en" ? "of" : "de"} {questions.length} {t("correct")} ·{" "}
             {correctCount / questions.length >= 0.72
-              ? "Above the 72% passing line on these samples — keep it up."
-              : "Below the 72% line on these samples — review the explanations and the domains."}
+              ? t("abovePassingLine")
+              : t("belowPassingLine")}
           </p>
         </div>
       )}
@@ -164,7 +166,7 @@ export default function Quiz() {
                     disabled={!picked}
                     className="rounded-lg bg-claude px-4 py-2 text-sm font-medium text-on-claude transition enabled:hover:bg-claude-soft disabled:cursor-not-allowed disabled:opacity-40"
                   >
-                    Check answer
+                    {t("checkAnswer")}
                   </button>
                 ) : (
                   <span
@@ -173,8 +175,8 @@ export default function Quiz() {
                     }`}
                   >
                     {isCorrect
-                      ? "✓ Correct"
-                      : `✗ Incorrect — correct answer is ${q.answer}`}
+                      ? t("correctBadge")
+                      : `${t("incorrectBadge")} ${q.answer}`}
                   </span>
                 )}
               </div>
@@ -182,7 +184,7 @@ export default function Quiz() {
               {isRevealed && (
                 <div className="mt-4 animate-fade-up rounded-xl border border-border bg-surface-2/50 p-4">
                   <h4 className="text-xs font-semibold uppercase tracking-wider text-claude">
-                    Why
+                    {t("why")}
                   </h4>
                   <p className="mt-2 text-sm leading-relaxed text-muted">
                     {q.explanation}

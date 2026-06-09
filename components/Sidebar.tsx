@@ -7,11 +7,36 @@ import BrandLogo from "./BrandLogo";
 import ThemeToggle from "./ThemeToggle";
 import UserMenu from "./UserMenu";
 import { OverallProgressMeter } from "./progress-ui";
-import { navItems } from "@/lib/content";
+import { useLanguage, Language } from "@/components/language-provider";
+import { Languages } from "lucide-react";
+
+export function LanguageSelector({ className = "" }: { className?: string }) {
+  const { language, setLanguage } = useLanguage();
+  return (
+    <div className={`relative inline-flex ${className}`}>
+      <select
+        value={language}
+        onChange={(e) => setLanguage(e.target.value as Language)}
+        aria-label="Change language"
+        className="absolute inset-0 cursor-pointer opacity-0"
+      >
+        <option value="en">English (EN)</option>
+        <option value="pt">Português (PT)</option>
+        <option value="es">Español (ES)</option>
+      </select>
+      <div className="pointer-events-none inline-flex h-9 items-center gap-1.5 rounded-lg border border-border bg-surface px-2.5 text-xs font-semibold text-muted transition hover:text-cream">
+        <Languages className="size-4" />
+        <span className="uppercase">{language}</span>
+      </div>
+    </div>
+  );
+}
 
 export default function Sidebar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const { content, t } = useLanguage();
+  const { navItems } = content;
 
   const links = (
     <nav className="flex flex-col gap-1">
@@ -53,6 +78,7 @@ export default function Sidebar() {
           <span className="text-sm font-semibold text-cream">Claude · Foundations</span>
         </Link>
         <div className="flex items-center gap-2">
+          <LanguageSelector />
           <ThemeToggle />
           <button
             onClick={() => setOpen((v) => !v)}
@@ -89,8 +115,9 @@ export default function Sidebar() {
             {links}
             <div className="mt-6 space-y-4 border-t border-border pt-6">
               <OverallProgressMeter />
-              <div onClick={() => setOpen(false)}>
+              <div onClick={() => setOpen(false)} className="flex items-center justify-between gap-3">
                 <UserMenu />
+                <LanguageSelector />
               </div>
             </div>
           </div>
@@ -105,7 +132,7 @@ export default function Sidebar() {
             <span className="block text-sm font-semibold leading-tight text-cream">
               Claude Certified Architect
             </span>
-            <span className="block text-xs text-muted">Foundations · Study Guide</span>
+            <span className="block text-xs text-muted">{t("studyGuideSubtitle")}</span>
           </span>
         </Link>
         {links}
@@ -113,10 +140,13 @@ export default function Sidebar() {
           <OverallProgressMeter />
           <div className="flex items-center justify-between gap-3">
             <UserMenu />
-            <ThemeToggle />
+            <div className="flex items-center gap-2">
+              <LanguageSelector />
+              <ThemeToggle />
+            </div>
           </div>
           <span className="block text-xs text-muted/60">
-            Unofficial companion · v0.1
+            {t("unofficialCompanion")} · v0.1
           </span>
         </div>
       </aside>

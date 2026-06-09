@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Loader2 } from "lucide-react";
 
+import { useLanguage } from "@/components/language-provider";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -20,6 +21,7 @@ import { Label } from "@/components/ui/label";
 
 export default function LoginPage() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -39,7 +41,7 @@ export default function LoginPage() {
     setLoading(false);
 
     if (res?.error) {
-      setError("E-mail ou senha incorretos.");
+      setError(t("invalidEmailPassword"));
       return;
     }
     router.push("/overview");
@@ -49,9 +51,9 @@ export default function LoginPage() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-2xl">Entrar</CardTitle>
+        <CardTitle className="text-2xl">{t("signIn")}</CardTitle>
         <CardDescription>
-          Acesse sua conta para acompanhar seu progresso nos estudos.
+          {t("accessAccountToTrack")}
         </CardDescription>
       </CardHeader>
 
@@ -64,7 +66,7 @@ export default function LoginPage() {
           )}
 
           <div className="space-y-2">
-            <Label htmlFor="email">E-mail</Label>
+            <Label htmlFor="email">{t("emailLabel")}</Label>
             <Input
               id="email"
               type="email"
@@ -77,7 +79,7 @@ export default function LoginPage() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password">Senha</Label>
+            <Label htmlFor="password">{t("passwordLabel")}</Label>
             <Input
               id="password"
               type="password"
@@ -93,15 +95,15 @@ export default function LoginPage() {
         <CardFooter className="mt-6 flex-col gap-4">
           <Button type="submit" className="w-full" disabled={loading}>
             {loading && <Loader2 className="size-4 animate-spin" />}
-            Entrar
+            {t("signIn")}
           </Button>
           <p className="text-center text-sm text-muted">
-            Ainda não tem conta?{" "}
+            {t("dontHaveAccount")}{" "}
             <Link
               href="/register"
               className="font-medium text-claude-soft hover:underline"
             >
-              Cadastre-se
+              {t("signUp")}
             </Link>
           </p>
         </CardFooter>

@@ -1,22 +1,29 @@
+"use client";
+
 import { PageHeader, PageNav } from "@/components/PageShell";
 import DomainSection from "@/components/DomainSection";
 import { LoginToTrackHint, SectionProgress } from "@/components/progress-ui";
-import { domains } from "@/lib/content";
+import { useLanguage, PageTitle } from "@/components/language-provider";
 import { allTaskKeys } from "@/lib/progress";
 
-export const metadata = { title: "Domains · Foundations Guide" };
-
 export default function DomainsPage() {
+  const { content, t } = useLanguage();
+  const { domains, navItems } = content;
+
+  const activeNav = navItems.find((n) => n.href === "/domains");
+  const title = activeNav ? activeNav.label : "Domínios";
+
   return (
     <div className="prose-guide">
+      <PageTitle title={title} />
       <PageHeader
-        eyebrow="Content outline"
-        title="Domains & task statements"
-        intro="The five scored domains and their task statements. Expand any task to see the knowledge and skills it tests. Jump to a domain below."
+        eyebrow={t("contentOutline")}
+        title={title}
+        intro={t("domainsIntro")}
       />
 
       <LoginToTrackHint />
-      <SectionProgress keys={allTaskKeys} noun="tópicos" />
+      <SectionProgress keys={allTaskKeys} noun="topics" />
 
       {/* Jump links */}
       <div className="mb-12 flex flex-wrap gap-2">

@@ -1,25 +1,32 @@
+"use client";
+
 import { PageHeader, PageNav } from "@/components/PageShell";
 import {
   LoginToTrackHint,
   SectionProgress,
   StudyCheck,
 } from "@/components/progress-ui";
-import { exercises } from "@/lib/content";
+import { useLanguage, PageTitle } from "@/components/language-provider";
 import { allExerciseKeys, exerciseKey } from "@/lib/progress";
 
-export const metadata = { title: "Exercises · Foundations Guide" };
-
 export default function ExercisesPage() {
+  const { content, t } = useLanguage();
+  const { exercises, navItems } = content;
+
+  const activeNav = navItems.find((n) => n.href === "/exercises");
+  const title = activeNav ? activeNav.label : "Exercícios";
+
   return (
     <div className="prose-guide">
+      <PageTitle title={title} />
       <PageHeader
-        eyebrow="Hands-on"
-        title="Preparation exercises"
-        intro="Four labs that build practical familiarity across the domains. Work through them with the Agent SDK, Claude Code, and the Claude API to turn knowledge into judgment."
+        eyebrow={t("handsOn")}
+        title={title}
+        intro={t("exercisesIntro")}
       />
 
       <LoginToTrackHint />
-      <SectionProgress keys={allExerciseKeys} noun="exercícios" />
+      <SectionProgress keys={allExerciseKeys} noun="exercises" />
 
       <div className="space-y-6">
         {exercises.map((ex) => (
@@ -48,7 +55,7 @@ export default function ExercisesPage() {
             </ol>
 
             <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-border pt-4">
-              <span className="text-xs text-muted">Reinforces:</span>
+              <span className="text-xs text-muted">{t("reinforces")}:</span>
               {ex.domains.map((d) => (
                 <span
                   key={d}
@@ -62,7 +69,7 @@ export default function ExercisesPage() {
             <div className="mt-4">
               <StudyCheck
                 itemKey={exerciseKey(ex.id)}
-                label="Marcar exercício como concluído"
+                label={t("markExerciseCompleted")}
               />
             </div>
           </article>

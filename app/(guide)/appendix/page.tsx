@@ -1,20 +1,55 @@
-import { PageHeader, PageNav } from "@/components/PageShell";
-import { appendix } from "@/lib/content";
+"use client";
 
-export const metadata = { title: "Appendix · Foundations Guide" };
+import { PageHeader, PageNav } from "@/components/PageShell";
+import { useLanguage, PageTitle } from "@/components/language-provider";
 
 export default function AppendixPage() {
+  const { content, t, language } = useLanguage();
+  const { appendix, navItems } = content;
+
+  const activeNav = navItems.find((n) => n.href === "/appendix");
+  const title = activeNav ? activeNav.label : "Apêndice";
+
+  const techTitle =
+    language === "pt"
+      ? "Tecnologias e conceitos"
+      : language === "es"
+        ? "Tecnologías y conceptos"
+        : "Technologies & concepts";
+
+  const inScopeTitle =
+    language === "pt"
+      ? "No escopo"
+      : language === "es"
+        ? "En el alcance"
+        : "In scope";
+
+  const outOfScopeTitle =
+    language === "pt"
+      ? "Fora do escopo"
+      : language === "es"
+        ? "Fuera del alcance"
+        : "Out of scope";
+
+  const recommendationsTitle =
+    language === "pt"
+      ? "Recomendações de preparação para o exame"
+      : language === "es"
+        ? "Recomendaciones de preparación para el examen"
+        : "Exam preparation recommendations";
+
   return (
     <div className="prose-guide">
+      <PageTitle title={title} />
       <PageHeader
-        eyebrow="Reference"
-        title="Appendix"
-        intro="Technologies and concepts you may see, what's explicitly in and out of scope, and the recommended path to prepare."
+        eyebrow={t("reference")}
+        title={title}
+        intro={t("appendixIntro")}
       />
 
       {/* Technologies */}
       <section>
-        <h2 className="text-xl font-semibold text-cream">Technologies & concepts</h2>
+        <h2 className="text-xl font-semibold text-cream">{techTitle}</h2>
         <div className="mt-5 grid gap-3 sm:grid-cols-2">
           {appendix.technologies.map((t) => (
             <div
@@ -32,7 +67,7 @@ export default function AppendixPage() {
       <section className="mt-12 grid gap-5 lg:grid-cols-2">
         <div className="rounded-2xl border border-claude-dim/50 bg-surface p-6">
           <h2 className="flex items-center gap-2 text-lg font-semibold text-cream">
-            <span className="text-claude">✓</span> In scope
+            <span className="text-claude">✓</span> {inScopeTitle}
           </h2>
           <ul className="mt-4 space-y-2">
             {appendix.inScope.map((s, i) => (
@@ -45,7 +80,7 @@ export default function AppendixPage() {
         </div>
         <div className="rounded-2xl border border-border bg-surface p-6">
           <h2 className="flex items-center gap-2 text-lg font-semibold text-cream">
-            <span className="text-muted">✕</span> Out of scope
+            <span className="text-muted">✕</span> {outOfScopeTitle}
           </h2>
           <ul className="mt-4 space-y-2">
             {appendix.outOfScope.map((s, i) => (
@@ -61,7 +96,7 @@ export default function AppendixPage() {
       {/* Recommendations */}
       <section className="mt-12">
         <h2 className="text-xl font-semibold text-cream">
-          Exam preparation recommendations
+          {recommendationsTitle}
         </h2>
         <ol className="mt-5 space-y-3">
           {appendix.recommendations.map((r, i) => (

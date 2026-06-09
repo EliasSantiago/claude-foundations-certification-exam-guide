@@ -1,15 +1,23 @@
+"use client";
+
 import { PageHeader, PageNav } from "@/components/PageShell";
 import Quiz from "@/components/Quiz";
-
-export const metadata = { title: "Practice Questions · Foundations Guide" };
+import { useLanguage, PageTitle } from "@/components/language-provider";
 
 export default function QuestionsPage() {
+  const { content, t } = useLanguage();
+  const { navItems } = content;
+
+  const activeNav = navItems.find((n) => n.href === "/questions");
+  const title = activeNav ? activeNav.label : "Perguntas de Prática";
+
   return (
     <div className="prose-guide">
+      <PageTitle title={title} />
       <PageHeader
-        eyebrow="Practice"
-        title="Sample questions"
-        intro="Twelve sample questions in the exam's format — one correct answer of four. Pick an option, check it, and read the explanation. Your running score appears at the top."
+        eyebrow={t("practice")}
+        title={title}
+        intro={t("questionsIntro")}
       />
       <Quiz />
       <PageNav current="/questions" />

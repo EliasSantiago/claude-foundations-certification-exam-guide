@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Loader2 } from "lucide-react";
 
+import { useLanguage } from "@/components/language-provider";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -23,6 +24,7 @@ type Field = "name" | "email" | "whatsapp" | "password" | "confirmPassword";
 
 export default function RegisterPage() {
   const router = useRouter();
+  const { t } = useLanguage();
   const [values, setValues] = useState<Record<Field, string>>({
     name: "",
     email: "",
@@ -48,7 +50,16 @@ export default function RegisterPage() {
       const fieldErrors: Partial<Record<Field, string>> = {};
       for (const issue of parsed.error.issues) {
         const key = issue.path[0] as Field;
-        if (key && !fieldErrors[key]) fieldErrors[key] = issue.message;
+        if (key && !fieldErrors[key]) {
+          let msg = issue.message;
+          if (msg === "Informe seu nome completo") msg = t("nameValidation");
+          else if (msg === "E-mail inválido") msg = t("emailValidation");
+          else if (msg === "WhatsApp muito longo") msg = t("whatsappValidation");
+          else if (msg === "A senha precisa de pelo menos 8 caracteres") msg = t("passwordValidation");
+          else if (msg === "As senhas não conferem") msg = t("confirmPasswordValidation");
+
+          fieldErrors[key] = msg;
+        }
       }
       setErrors(fieldErrors);
       return;
@@ -64,7 +75,7 @@ export default function RegisterPage() {
     if (!res.ok) {
       setLoading(false);
       const data = await res.json().catch(() => ({}));
-      setFormError(data.error ?? "Não foi possível concluir o cadastro.");
+      setFormError(data.error ?? t("couldNotRegister"));
       return;
     }
 
@@ -88,9 +99,9 @@ export default function RegisterPage() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-2xl">Criar conta</CardTitle>
+        <CardTitle className="text-2xl">{t("createAccount")}</CardTitle>
         <CardDescription>
-          Cadastre-se para salvar seu progresso e evoluir no guia.
+          {t("registerToSaveProgress")}
         </CardDescription>
       </CardHeader>
 
@@ -104,16 +115,16 @@ export default function RegisterPage() {
 
           <Field
             id="name"
-            label="Nome"
+            label={t("nameLabel")}
             value={values.name}
             onChange={set("name")}
             error={errors.name}
             autoComplete="name"
-            placeholder="Seu nome completo"
+            placeholder={t("fullNamePlaceholder")}
           />
           <Field
             id="email"
-            label="E-mail"
+            label={t("emailLabel")}
             type="email"
             value={values.email}
             onChange={set("email")}
@@ -123,48 +134,48 @@ export default function RegisterPage() {
           />
           <Field
             id="whatsapp"
-            label="WhatsApp"
+            label={t("whatsappLabel")}
             value={values.whatsapp}
             onChange={set("whatsapp")}
             error={errors.whatsapp}
             autoComplete="tel"
-            placeholder="(opcional) (11) 99999-9999"
+            placeholder={`(${t("optionalLabel")}) (11) 99999-9999`}
             optional
           />
           <Field
             id="password"
-            label="Senha"
+            label={t("passwordLabel")}
             type="password"
             value={values.password}
             onChange={set("password")}
             error={errors.password}
             autoComplete="new-password"
-            placeholder="Mínimo de 8 caracteres"
+            placeholder={t("minCharactersPlaceholder")}
           />
           <Field
             id="confirmPassword"
-            label="Confirmar senha"
+            label={t("confirmPasswordLabel")}
             type="password"
             value={values.confirmPassword}
             onChange={set("confirmPassword")}
             error={errors.confirmPassword}
             autoComplete="new-password"
-            placeholder="Repita a senha"
+            placeholder={t("repeatPasswordPlaceholder")}
           />
         </CardContent>
 
         <CardFooter className="mt-6 flex-col gap-4">
           <Button type="submit" className="w-full" disabled={loading}>
             {loading && <Loader2 className="size-4 animate-spin" />}
-            Criar conta
+            {t("createAccount")}
           </Button>
           <p className="text-center text-sm text-muted">
-            Já tem conta?{" "}
+            {t("alreadyHaveAccount")}{" "}
             <Link
               href="/login"
               className="font-medium text-claude-soft hover:underline"
             >
-              Entrar
+              {t("signIn")}
             </Link>
           </p>
         </CardFooter>
@@ -185,12 +196,13 @@ function Field({
   error?: string;
   optional?: boolean;
 }) {
+  const { t } = useLanguage();
   return (
     <div className="space-y-2">
       <Label htmlFor={id}>
         {label}
         {optional && (
-          <span className="text-xs font-normal text-muted">opcional</span>
+          <span className="text-xs font-normal text-muted ml-1">({t("optionalLabel")})</span>
         )}
       </Label>
       <Input id={id} aria-invalid={!!error} {...props} />
