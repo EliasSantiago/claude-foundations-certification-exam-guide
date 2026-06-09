@@ -172,9 +172,6 @@ export default function Sidebar() {
           <div className="flex items-center justify-between gap-3">
             <UserMenu />
           </div>
-          <span className="block text-xs text-muted/60">
-            {t("unofficialCompanion")} · v0.1
-          </span>
         </div>
       </aside>
     </>
