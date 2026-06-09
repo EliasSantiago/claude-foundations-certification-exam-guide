@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
-import { Loader2 } from "lucide-react";
+import { Loader2, Eye, EyeOff } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 import { useLanguage } from "@/components/language-provider";
 import { Button } from "@/components/ui/button";
@@ -189,6 +190,7 @@ function Field({
   label,
   error,
   optional,
+  type,
   ...props
 }: React.ComponentProps<typeof Input> & {
   id: string;
@@ -197,6 +199,9 @@ function Field({
   optional?: boolean;
 }) {
   const { t } = useLanguage();
+  const [show, setShow] = useState(false);
+  const isPassword = type === "password";
+
   return (
     <div className="space-y-2">
       <Label htmlFor={id}>
@@ -205,7 +210,25 @@ function Field({
           <span className="text-xs font-normal text-muted ml-1">({t("optionalLabel")})</span>
         )}
       </Label>
-      <Input id={id} aria-invalid={!!error} {...props} />
+      <div className="relative">
+        <Input
+          id={id}
+          type={isPassword ? (show ? "text" : "password") : type}
+          aria-invalid={!!error}
+          className={cn(isPassword ? "pr-10" : "")}
+          {...props}
+        />
+        {isPassword && (
+          <button
+            type="button"
+            onClick={() => setShow(!show)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-cream focus:outline-none cursor-pointer"
+            aria-label={show ? "Hide password" : "Show password"}
+          >
+            {show ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+          </button>
+        )}
+      </div>
       {error && <p className="text-xs text-destructive">{error}</p>}
     </div>
   );
